@@ -1,11 +1,10 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "json2ts",
-  "title": "json2ts",
-  "description": "",
+  "title": "Json2ts",
+  "description": "Convert JSON to typescript code",
   "icon": "command-icon.png",
   "author": "kyuuseiryuu",
-  "owner": "r-group",
   "categories": [
     "Data",
     "Developer Tools"
@@ -14,18 +13,21 @@
   "commands": [
     {
       "name": "index",
-      "title": "json2ts",
+      "title": "Json2ts",
       "subtitle": "convert JSON to Typescript types",
       "description": "convert JSON to Typescript types",
-      "mode": "no-view"
+      "mode": "view"
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.43.2"
+    "@raycast/api": "^1.43.2",
+    "@raycast/utils": "^1.4.10",
+    "json2ts": "^0.0.7"
   },
   "devDependencies": {
     "@types/node": "18.8.3",
     "@types/react": "18.0.9",
+    "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
@@ -39,5 +41,6 @@
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
     "publish": "ray publish"
-  }
+  },
+  "version": "1.0.0"
 }
