@@ -1,6 +1,6 @@
 
 export enum Library {
-  JSON_TS = 'JSON_TS',
-  JSON_2_TS = 'JSON_2_TS',
-  JSON2TS_COM_API = 'JSON2TS_COM_API',
+  JSON_TS = 'shakyshane/json-ts',
+  JSON_2_TS = 'GregorBiswanger/json2ts',
+  JSON2TS_COM_API = 'json2ts.com',
 }

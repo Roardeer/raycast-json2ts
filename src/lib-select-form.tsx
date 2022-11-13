@@ -1,25 +1,29 @@
-import { Action, ActionPanel, Form, LocalStorage, popToRoot } from "@raycast/api";
-import { FormValidation, useForm } from "@raycast/utils";
+import { Action, ActionPanel, Form, popToRoot, showHUD } from "@raycast/api";
+import { FormValidation, useCachedState, useForm } from "@raycast/utils";
 import { useEffect } from "react";
 import { Library } from "./types";
 
 export default () => {
+  const [lib, setLib] = useCachedState<string>('lib');
   const form = useForm<{ lib: Library | string }>({
+    initialValues: {
+      lib: Library.JSON_TS,
+    },
     validation: {
       lib: FormValidation.Required,
     },
     onSubmit: async (values) => {
-      await LocalStorage.setItem('lib', values.lib);
+      // await LocalStorage.setItem('lib', values.lib);
+      setLib(values.lib);
       popToRoot({ clearSearchBar: true });
+      showHUD(`use convertor: ${values.lib}`);
     },
   });
   useEffect(() => {
-    LocalStorage.getItem<Library>('lib').then(lib => {
-      if (!lib) return;
-      setTimeout(() => {
-        form.setValue('lib', lib);
-      });
-    })
+    if (!lib) return;
+    setTimeout(() => {
+      form.setValue('lib', lib);
+    }, 300);
   }, []);
   return (
     <Form
