@@ -1,4 +1,4 @@
-# json2ts-multi-convertor
+# json2ts-multi-converter
 
 ## Supported library.
 - [raycast](https://raycast.com)
@@ -7,5 +7,5 @@
 
 ## Sample JSON
 ```JSON
-{ "name": "json2ts-multi-convertor", "version": "1.0.0" }
+{ "name": "json2ts-multi-converter", "version": "1.0.0" }
 ```
