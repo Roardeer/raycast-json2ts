@@ -1,30 +1,24 @@
-import { Action, ActionPanel, Form, popToRoot, showHUD } from "@raycast/api";
+import { Action, ActionPanel, Form, showToast, useNavigation } from "@raycast/api";
 import { FormValidation, useCachedState, useForm } from "@raycast/utils";
-import { useEffect } from "react";
 import { Library } from "./types";
 
 export default () => {
   const [lib, setLib] = useCachedState<string>('lib');
+  const nav = useNavigation();
   const form = useForm<{ lib: Library | string }>({
     initialValues: {
-      lib: Library.JSON_TS,
+      lib,
     },
     validation: {
       lib: FormValidation.Required,
     },
     onSubmit: async (values) => {
-      // await LocalStorage.setItem('lib', values.lib);
+      console.log({ values });
       setLib(values.lib);
-      popToRoot({ clearSearchBar: true });
-      showHUD(`use convertor: ${values.lib}`);
+      showToast({ title: `Change library`, message: values.lib, });
+      nav.pop();
     },
   });
-  useEffect(() => {
-    if (!lib) return;
-    setTimeout(() => {
-      form.setValue('lib', lib);
-    }, 300);
-  }, []);
   return (
     <Form
       actions={

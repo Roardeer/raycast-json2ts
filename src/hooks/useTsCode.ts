@@ -1,5 +1,5 @@
 import { useCachedState, useFetch } from "@raycast/utils";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Library } from "../types";
 import { useJSON } from "./useJson";
 
@@ -10,7 +10,6 @@ const { json2ts } = require('json-ts');
 
 const headers = {
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  'Cookie': 'ARRAffinity=b4f987fe59d467949596e80e5d970e85045d4d281e5401008de6916625ebe8e0; ai_session=1fef729485bc4ce2b2bfcd69e1525acb|2022-11-13T14:20:45.8099185+00:00|2022-11-13T14:31:25.1610627+00:00; ai_user=87aeabc2b4fb40c5843877fed75a9f75|2022-11-13T14:18:43.8936633+00:00'
 };
 
 const useTsCode = () => {
@@ -26,7 +25,7 @@ const useTsCode = () => {
         return `http://github.com/${lib}`
     }
   }, []);
-  const getMarkdown = (code: string) => code ? `
+  const getMarkdown = useCallback((code: string) => code ? `
 use converter [${lib}](${libURL})
 
 ---
@@ -35,7 +34,7 @@ use converter [${lib}](${libURL})
 ${code}
 \`\`\`
 
-` : '';
+` : '', [lib, libURL]);
   const body = useMemo(() => {
     if (!json) return '';
     const urlParams = new URLSearchParams();
