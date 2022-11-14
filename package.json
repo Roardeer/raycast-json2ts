@@ -1,9 +1,9 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "json2ts-multiple-converter",
-  "title": "Json2ts multiple converter",
+  "title": "Json2ts Multiple Converter",
   "description": "Convert JSON to typescript code",
-  "icon": "command-icon.png",
+  "icon": "icon.png",
   "author": "kyuuseiryuu",
   "categories": [
     "Data",
@@ -14,14 +14,14 @@
     {
       "name": "index",
       "title": "Json2ts",
-      "subtitle": "Convert JSON to Typescript types",
-      "description": "Convert JSON to Typescript types",
+      "subtitle": "Convert JSON to typescript types",
+      "description": "Convert JSON to typescript types",
       "mode": "view"
     },
     {
       "name": "lib-select-form",
       "title": "Json2ts Config",
-      "subtitle": "convert JSON to Typescript types",
+      "subtitle": "Change converter",
       "description": "Select converter library",
       "mode": "view"
     }
