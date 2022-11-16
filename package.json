@@ -25,7 +25,7 @@
       "title": "Convert Library",
       "type": "dropdown",
       "description": "Use this library to convert.",
-      "required": false,
+      "required": true,
       "data": [
         {
           "title": "shakyshane/json-ts",
