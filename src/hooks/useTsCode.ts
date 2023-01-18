@@ -17,7 +17,8 @@ const useTsCode = () => {
   const [json] = useJSON();
   const [code, setCode] = useState<string>();
   const [markdown, setMarkdown] = useState<string>("No JSON data found in clipboard.");
-  const { "convert-library": lib } = getPreferenceValues<{ "convert-library": string }>();
+  const { "convert-library": initLibrary } = getPreferenceValues<{ "convert-library": Library }>();
+  const [lib, setLibName] = useState<Library>(initLibrary);
   const libURL = useMemo(() => {
     switch (lib) {
       case Library.JSON2TS_COM_API:
@@ -25,7 +26,7 @@ const useTsCode = () => {
       default:
         return `http://github.com/${lib}`;
     }
-  }, []);
+  }, [lib]);
   const getMarkdown = useCallback(
     (code: string) =>
       code
@@ -76,6 +77,7 @@ ${code}
     return fetchData.isLoading;
   }, [json, lib, fetchData.isLoading]);
   useEffect(() => {
+    console.log("Lib or json change", { lib });
     if (!json) return;
     switch (lib) {
       case Library.JSON_2_TS: {
@@ -99,7 +101,7 @@ ${code}
       }
     }
   }, [json, lib]);
-  return [{ code, markdown, loading }];
+  return [{ library: lib, code, markdown, loading, changeLib: setLibName }];
 };
 
 export default useTsCode;
